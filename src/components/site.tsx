@@ -2,6 +2,7 @@ import { Link } from "@tanstack/react-router";
 import { useState, type ReactNode } from "react";
 import { Menu, X, Mail } from "lucide-react";
 import { GYM } from "@/lib/gym";
+import logo from "@/assets/paradise-logo.jpg.asset.json";
 
 const NAV = [
   { to: "/membership", label: "Membership" },
@@ -27,8 +28,9 @@ export function Header() {
   return (
     <header className="sticky top-0 z-40 border-b bg-navy-deep/95 backdrop-blur">
       <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-3">
-        <Link to="/" className="font-display text-3xl tracking-wide" onClick={() => setOpen(false)}>
-          PARADISE<span className="text-primary">GYM</span>
+        <Link to="/" className="flex items-center gap-2" onClick={() => setOpen(false)} aria-label="Paradise Fitness Center home">
+          <img src={logo.url} alt="Paradise Fitness Center logo" width={48} height={43} className="h-11 w-auto rounded-sm" />
+          <span className="font-display text-2xl tracking-wide">PARADISE<span className="text-primary"> FITNESS</span></span>
         </Link>
         <nav className="hidden gap-6 md:flex" aria-label="Main">
           {NAV.map((n) => (
@@ -59,7 +61,7 @@ export function Footer() {
     <footer className="border-t bg-navy-deep pb-24 md:pb-0">
       <div className="mx-auto grid max-w-6xl gap-8 px-4 py-12 md:grid-cols-3">
         <div>
-          <p className="font-display text-3xl">PARADISE<span className="text-primary">GYM</span></p>
+          <img src={logo.url} alt="Paradise Fitness Center logo" width={160} height={143} loading="lazy" className="w-40 rounded-sm" />
           <p className="mt-2 text-sm text-muted-foreground">Train hard. Feel better.</p>
         </div>
         <div className="space-y-1 text-sm">
