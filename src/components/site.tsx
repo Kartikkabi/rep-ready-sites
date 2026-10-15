@@ -20,7 +20,7 @@ export function Placeholder({ children = "[PLACEHOLDER]" }: { children?: ReactNo
 export function CtaLink({ to = "/contact", children, variant = "primary" }: { to?: "/contact" | "/membership"; children: ReactNode; variant?: "primary" | "outline" }) {
   const base = "inline-flex items-center justify-center rounded-sm px-6 py-3 font-semibold uppercase tracking-wider text-sm transition-transform hover:-translate-y-0.5";
   const v = variant === "primary" ? "bg-primary text-primary-foreground" : "border border-foreground text-foreground hover:bg-foreground hover:text-background";
-  return <Link to={to} hash={to === "/contact" ? "trial" : undefined} className={`${base} ${v}`}>{children}</Link>;
+  return <Link to={to} {...(to === "/contact" ? { hash: "trial" } : {})} className={`${base} ${v}`}>{children}</Link>;
 }
 
 export function Header() {
