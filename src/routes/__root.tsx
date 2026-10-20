@@ -8,11 +8,12 @@ import {
   Scripts,
   type ErrorComponentProps,
 } from "@tanstack/react-router";
-import { useEffect, type ReactNode } from "react";
+import { useEffect, useState, type ReactNode } from "react";
 
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
 import { Header, Footer, MobileBar } from "@/components/site";
+import logo from "@/assets/paradise-logo.jpg.asset.json";
 
 function NotFoundComponent() {
   return (
@@ -118,6 +119,7 @@ function RootComponent() {
 
   return (
     <QueryClientProvider client={queryClient}>
+      <InitialLoader />
       {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
       <a href="#main" className="sr-only focus:not-sr-only">Skip to content</a>
       <Header />
@@ -125,5 +127,61 @@ function RootComponent() {
       <Footer />
       <MobileBar />
     </QueryClientProvider>
+  );
+}
+
+export function InitialLoader() {
+  const [state, setState] = useState<"waiting" | "visible" | "leaving" | "hidden">("waiting");
+
+  useEffect(() => {
+    if (document.readyState === "complete") {
+      setState("hidden");
+      return;
+    }
+
+    let dismissTimer = 0;
+    const showTimer = window.setTimeout(() => {
+      setState((current) => current === "waiting" ? "visible" : current);
+    }, 180);
+
+    const finishLoading = () => {
+      window.clearTimeout(showTimer);
+      setState((current) => current === "visible" ? "leaving" : "hidden");
+      dismissTimer = window.setTimeout(() => setState("hidden"), 240);
+    };
+
+    window.addEventListener("load", finishLoading, { once: true });
+    return () => {
+      window.clearTimeout(showTimer);
+      window.clearTimeout(dismissTimer);
+      window.removeEventListener("load", finishLoading);
+    };
+  }, []);
+
+  if (state !== "visible" && state !== "leaving") return null;
+
+  return (
+    <div
+      className={`initial-loader ${state === "leaving" ? "initial-loader-leaving" : ""}`}
+      role="status"
+      aria-label="Loading Paradise Fitness Center"
+      aria-hidden={state === "leaving"}
+    >
+      <div className="initial-loader-content">
+        <img src={logo.url} alt="Paradise Fitness Center" className="initial-loader-logo" />
+        <div className="loader-barbell-scene" aria-hidden="true">
+          <div className="loader-barbell">
+            <span className="loader-weight loader-weight-left" />
+            <span className="loader-collar loader-collar-left" />
+            <span className="loader-bar" />
+            <span className="loader-collar loader-collar-right" />
+            <span className="loader-weight loader-weight-right" />
+          </div>
+          <span className="loader-floor" />
+        </div>
+        <span className="loader-spinner" aria-hidden="true" />
+        <p className="initial-loader-label">LOADING YOUR NEXT REP.</p>
+      </div>
+    </div>
   );
 }
