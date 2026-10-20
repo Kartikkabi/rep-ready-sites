@@ -76,6 +76,121 @@
 }
 @utility fade-up { animation: fadeUp 0.8s ease-out both; }
 
+.initial-loader {
+  position: fixed;
+  z-index: 100;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  background: oklch(0.12 0.012 55);
+  color: var(--color-foreground);
+  opacity: 1;
+  transition: opacity 240ms ease;
+}
+
+.initial-loader-leaving {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.initial-loader-content {
+  display: flex;
+  width: min(100% - 40px, 360px);
+  flex-direction: column;
+  align-items: center;
+}
+
+.initial-loader-logo {
+  width: 112px;
+  height: 100px;
+  object-fit: contain;
+  border-radius: var(--radius-sm);
+  filter: drop-shadow(0 0 16px color-mix(in oklab, var(--color-primary) 24%, transparent));
+}
+
+.loader-barbell-scene {
+  position: relative;
+  display: grid;
+  width: 230px;
+  height: 136px;
+  place-items: center;
+  margin-top: 26px;
+}
+
+.loader-barbell {
+  position: absolute;
+  z-index: 1;
+  display: flex;
+  height: 12px;
+  align-items: center;
+  animation: deadlift-lockout 1.45s cubic-bezier(0.32, 0.02, 0.32, 1) infinite;
+  filter: drop-shadow(0 0 8px color-mix(in oklab, var(--color-primary) 38%, transparent));
+}
+
+.loader-bar {
+  width: 124px;
+  height: 5px;
+  border-radius: 999px;
+  background: var(--color-foreground);
+}
+
+.loader-weight {
+  width: 13px;
+  height: 45px;
+  border: 2px solid var(--color-primary);
+  border-radius: 3px;
+  background: color-mix(in oklab, var(--color-primary) 25%, oklch(0.12 0.012 55));
+}
+
+.loader-weight-left { margin-right: 4px; }
+.loader-weight-right { margin-left: 4px; }
+.loader-collar { width: 4px; height: 18px; border-radius: 2px; background: var(--color-primary); }
+.loader-collar-left { margin-right: 3px; }
+.loader-collar-right { margin-left: 3px; }
+
+.loader-floor {
+  position: absolute;
+  right: 4px;
+  bottom: 28px;
+  left: 4px;
+  height: 1px;
+  background: color-mix(in oklab, var(--color-primary) 54%, transparent);
+  box-shadow: 0 0 16px color-mix(in oklab, var(--color-primary) 48%, transparent);
+}
+
+.loader-spinner {
+  width: 20px;
+  height: 20px;
+  margin-top: 8px;
+  border: 2px solid color-mix(in oklab, var(--color-foreground) 18%, transparent);
+  border-top-color: var(--color-primary);
+  border-radius: 50%;
+  animation: loader-spin 0.8s linear infinite;
+}
+
+.initial-loader-label {
+  margin-top: 17px;
+  color: var(--color-foreground);
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  line-height: 1;
+}
+
+@keyframes deadlift-lockout {
+  0%, 12% { transform: translateY(43px); }
+  70%, 88% { transform: translateY(-24px); }
+  100% { transform: translateY(43px); }
+}
+
+@keyframes loader-spin { to { transform: rotate(360deg); } }
+
+@media (prefers-reduced-motion: reduce) {
+  .loader-barbell, .loader-spinner { animation: none; }
+  .loader-barbell { transform: translateY(0); }
+  .initial-loader, .initial-loader-leaving { transition: none; }
+}
+
 @keyframes fadeUp { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: none; } }
 
 @media (prefers-reduced-motion: reduce) {
