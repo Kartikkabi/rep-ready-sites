@@ -1,12 +1,10 @@
 # Rep Ready Sites
 
-A collection of responsive websites built to explore
-modern web design, frontend development, and user
-experience.
+A work in progress exploring modern web design, frontend development, and user experience through responsive website projects.
 
 ## Live Demo
 
-https://paradise-fitness-site.vercel.app
+[View Rep Ready Sites](https://paradise-fitness-site.vercel.app)
 
 ## Tech Stack
 
@@ -17,8 +15,37 @@ https://paradise-fitness-site.vercel.app
 
 ## Getting Started
 
+### Prerequisites
+
+- Node.js
+- npm
+
+### Installation
+
 Clone the repository:
 
+```bash
 git clone https://github.com/Kartikkabi/rep-ready-sites.git
+```
 
+Navigate to the project directory:
 
+```bash
+cd rep-ready-sites
+```
+
+Install dependencies:
+
+```bash
+npm install
+```
+
+Start the development server:
+
+```bash
+npm run dev
+```
+
+## Development Status
+
+This project is currently under development. New features, improvements, and website projects will be added as development progresses.
