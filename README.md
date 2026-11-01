@@ -1,26 +1,30 @@
 # Rep Ready Sites
 
-Implement exactly the screenshot and nothing else
+A collection of responsive websites built to explore
+modern web design, frontend development, and user
+experience.
 
-This project was built with [Lovable](https://lovable.dev).
+## Live Demo
 
-**Live app**: https://rep-ready-sites.lovable.app
+https://rep-ready-sites.lovable.app
 
-## Build with Lovable
+## Tech Stack
 
-Continue developing this project in the [Lovable editor](https://lovable.dev/projects/140c27c3-de38-4c80-b5a5-186ce2379b29).
+- React
+- TypeScript
+- Tailwind CSS
+- Vite
 
-- **Ship faster**: describe what you want to build and Lovable handles the code.
-- **Stay in sync**: every change made in Lovable is committed straight to this repository.
-- **Full ownership**: this code is yours. Push to `main` on GitHub and your changes sync back into Lovable, ready for your next prompt.
+## Getting Started
 
-## Development
+Clone the repository:
 
-Prefer working locally? You need Node.js and npm — [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating).
+git clone https://github.com/Kartikkabi/rep-ready-sites.git
 
-```sh
-git clone <this-repository-url>
-cd <repository-name>
-npm i
+Install dependencies:
+
+npm install
+
+Start the development server:
+
 npm run dev
-```
