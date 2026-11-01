@@ -6,7 +6,7 @@ experience.
 
 ## Live Demo
 
-https://rep-ready-sites.lovable.app
+https://paradise-fitness-site.vercel.app
 
 ## Tech Stack
 
@@ -21,10 +21,4 @@ Clone the repository:
 
 git clone https://github.com/Kartikkabi/rep-ready-sites.git
 
-Install dependencies:
 
-npm install
-
-Start the development server:
-
-npm run dev
